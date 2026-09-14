@@ -114,6 +114,20 @@ class ParsedDocument:
         }
 
 
+def set_full_page_ocr(ocr_options) -> None:
+    """Switch ``ocr_options`` to OCR the whole page, on any docling version.
+
+    ``OcrMode`` only exists from docling 2.116.0; before that the same thing was
+    a boolean, which newer versions keep as a deprecated alias.
+    """
+    try:
+        from docling.datamodel.pipeline_options import OcrMode
+    except ImportError:  # docling < 2.116
+        ocr_options.force_full_page_ocr = True
+    else:
+        ocr_options.mode = OcrMode.FULL_PAGE
+
+
 def word_level_ocr_options(engine: str = "easyocr", **kwargs):
     """Options for an OCR engine configured to return one box per word.
 
@@ -179,9 +193,7 @@ def parse_pdf(
     elif ocr and word_level_ocr:
         pipeline_options.ocr_options = word_level_ocr_options(ocr_engine)
     if force_full_page_ocr:
-        from docling.datamodel.pipeline_options import OcrMode
-
-        pipeline_options.ocr_options.mode = OcrMode.FULL_PAGE
+        set_full_page_ocr(pipeline_options.ocr_options)
 
     converter = DocumentConverter(
         format_options={

@@ -19,8 +19,10 @@ from typing import Any
 class PublishWordCellsMixin:
     """Mirror OCR word cells into ``parsed_page.word_cells``."""
 
-    def post_process_cells(self, ocr_cells, page, conv_res, priority=None) -> None:
-        super().post_process_cells(ocr_cells, page, conv_res, priority)  # type: ignore[misc]
+    def post_process_cells(self, ocr_cells, page, *args, **kwargs) -> None:
+        # Signature varies across docling versions: (cells, page) before 2.116,
+        # (cells, page, conv_res, priority=None) after. Pass through untouched.
+        super().post_process_cells(ocr_cells, page, *args, **kwargs)  # type: ignore[misc]
 
         parsed: Any = page.parsed_page
         if parsed is None:

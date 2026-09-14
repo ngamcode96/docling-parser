@@ -557,7 +557,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "docling", extras = ["rapidocr"], specifier = ">=2.126.0" },
+    { name = "docling", extras = ["rapidocr"], specifier = ">=2.92.0" },
     { name = "easyocr", specifier = ">=1.7.2" },
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "pillow", specifier = ">=10.0.0" },

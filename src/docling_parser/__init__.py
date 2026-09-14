@@ -6,6 +6,7 @@ from docling_parser.parser import (
     ParsedDocument,
     WordBox,
     parse_pdf,
+    set_full_page_ocr,
     word_level_ocr_options,
 )
 from docling_parser.rapidocr_words import WordLevelRapidOcrOptions
@@ -19,5 +20,6 @@ __all__ = [
     "WordLevelRapidOcrOptions",
     "draw_word_boxes",
     "parse_pdf",
+    "set_full_page_ocr",
     "word_level_ocr_options",
 ]
