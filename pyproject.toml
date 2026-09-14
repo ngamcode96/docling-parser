@@ -1,0 +1,19 @@
+[project]
+name = "docling-parser"
+version = "0.1.0"
+description = "Minimal PDF parsing with word-level bounding boxes, powered by docling"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "docling[rapidocr]>=2.126.0",
+    "easyocr>=1.7.2",
+    "jupyter>=1.1.1",
+    "pillow>=10.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/docling_parser"]
